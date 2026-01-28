@@ -1,6 +1,6 @@
 # Trabalho prático de EDA 1 - Listas encadeadas em C 
 
-<p alling="center">
+<p aling="center">
     <img alt="Static Badge" src="https://img.shields.io/badge/ESTADO-EM_DESENVOLVIMENTO-%23FFDA03?style=flat">
     <img alt="Static Badge" src="https://img.shields.io/badge/Linguagem-C-%235eccf7?style=flat">
 </p>
