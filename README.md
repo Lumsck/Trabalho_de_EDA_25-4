@@ -12,5 +12,6 @@ Sistema de gerenciamento de dados em **C** utilizando **Listas Simplesmente Enca
 
 <table>
     <tr>
-    <td align="center"><a href="https://github.com/Lumsck"><img src="https://avatars.githubusercontent.com/u/86811460?s=96&v=4" width="200px;" alt=""/><br/><sub><b>Lucas Marconi Licks</b></sub></a><br/>
+    <td align="center"><a href="https://github.com/Lumsck"><img src="https://avatars.githubusercontent.com/u/86811460?v=4" width="200px;" alt=""/><br/><sub><b>Lucas Marconi Licks</b></sub></a><br/>
+    <td align="center"><a href="https://github.com/Patrickrsr"><img src="https://avatars.githubusercontent.com/u/106122246?v=4" width="200px;" alt=""/><br/><sub><b>Patrick Rafael</b></sub></a><br/>
 </table>
