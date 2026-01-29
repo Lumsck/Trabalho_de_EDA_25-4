@@ -32,7 +32,6 @@ if (opcao == 0)
 
 }
 
-
 void Menu_clientes(int *ptr_opcao) {
     printf("=== GERENCIAMENTO DE CLIENTES ===\n");
     printf("1. Cadastrar Cliente\n");
@@ -50,7 +49,7 @@ void Menu_clientes(int *ptr_opcao) {
     }
     if (*ptr_opcao == 2)
     {   //buguei de leve aqui
-        imprime();
+        
     }
     if (*ptr_opcao == 3)
     {
@@ -58,18 +57,8 @@ void Menu_clientes(int *ptr_opcao) {
     }
     if (*ptr_opcao == 4)
     {
-        //peguei inspirado do slide do professor
-    RegistroCliente * buscaCPF(RegistroCliente *ponteiro, int CPF) {
-    RegistroCliente *atual = ponteiro;
-    while (atual != NULL) {
-        if (atual->CPF == CPF) {
-            return atual;
-        }
-        atual = atual->proximo;
-    }
-    
-    return NULL;
-}
+
+
 
     }
     if (*ptr_opcao == 0)
@@ -100,7 +89,6 @@ void Cadastro_cliente() {
     
 }
 
-
 void imprime (RegistroCliente *ponteiro) {
     // esse daqui tambem foi inspirado no slide do professor
     RegistroCliente *atual = ponteiro;
@@ -115,19 +103,33 @@ void imprime (RegistroCliente *ponteiro) {
     }
 }
 
+RegistroCliente * buscaCPF(RegistroCliente *ponteiro, int CPF) {
+    RegistroCliente *atual = ponteiro;
+    while (atual != NULL) {
+        if (atual->CPF == CPF) {
+            return atual;
+        }
+        atual = atual->proximo;
+    }
+    
+    return NULL;
+}
+
 void Menu_produtos(int *opcao) {
     printf("=== GERENCIAMENTO DE PRODUTOS ===\n");
     printf("1. Cadastrar Produto\n");
     printf("2. Listar Produtos\n");
-    printf("3. Editar Produto\n");
-    printf("4. Remover Produto\n");
+    printf("3. Buscar Produto pelo código\n");
+    printf("4. Editar Produto\n");
+    printf("5. Remover Produto\n");
     printf("0. Voltar ao Menu Inicial\n");
 }
 
 void Menu_compras(int *opcao) {
     printf("=== CARRINHO DE COMPRAS ===\n");
-    printf("1. Realizar Compra\n");
-    printf("2. Listar Compras\n");
+    printf("1. Incluir Produto ao Carrinho\n");
+    printf("2. Listar Produtos do Carrinho\n");
+    printf("3. Retirar Produtos do Carrinho\n");
     printf("0. Voltar ao Menu Inicial\n");
 }
 
