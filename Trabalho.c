@@ -29,43 +29,15 @@
 
 //Cadastro e lista de clientes
 
-typedef struct Cadastro {
-    int CPF;
-    char nome[];
-    char email[];
-    int telefone;
-    int data_de_nascimento;
-    struct Cadastro * proximo;
-} RegistroCliente;
+
 
 //Listar clientes
 
-void imprime (RegistroCliente *ponteiro) {
-    RegistroCliente *atual = ponteiro;
-    while (atual != NULL) {
-        printf("CPF: %d\n", atual->CPF);
-        printf("Nome: %s\n", atual->nome);
-        printf("Email: %s\n", atual->email);
-        printf("Telefone: %d\n", atual->telefone);
-        printf("Data de Nascimento: %d\n", atual->data_de_nascimento);
-        printf("-----------------------\n");
-        atual = atual->proximo;
-    }
-}
+
 
 //Buscar cliente pelo CPF
 
-RegistroCliente * buscaCPF(RegistroCliente *ponteiro, int CPF) {
-    RegistroCliente *atual = ponteiro;
-    while (atual != NULL) {
-        if (atual->CPF == CPF) {
-            return atual;
-        }
-        atual = atual->proximo;
-    }
-    
-    return NULL;
-}
+
 
 //Editar dados de um cliente
 
