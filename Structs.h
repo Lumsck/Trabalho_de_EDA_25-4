@@ -4,30 +4,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct Carrinho {
+    long long int codigo_produto; 
+    int quantidade;
+    struct Carrinho * proximo;
+} Carrinho;
+
 typedef struct Cadastro {
-    int CPF;
+    long long int CPF;
     char *nome;
     char *email;
-    int telefone;
+    long long int telefone;
     int data_de_nascimento;
+    Carrinho * Item;
     struct Cadastro * proximo;
 } RegistroCliente;
 
 typedef struct Produto {
-    int codigo_unico;
+    long long int codigo_unico; 
     char *nome;
     float preco;
     int quantidade_estoque;
     struct Produto * proximo;
 } RegistroProduto;
-
-typedef struct Compra {
-    int id_compra;
-    int CPF_cliente;
-    int codigo_produto;
-    int quantidade_comprada;
-    float valor_total;
-    struct Compra * proximo;
-} RegistroCompra;
 
 #endif
