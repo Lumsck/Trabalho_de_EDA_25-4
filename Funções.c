@@ -157,22 +157,31 @@ void Menu_compras(RegistroCliente **ptr_lista_clientes, RegistroProduto **ptr_li
 }
 
 void Limpeza_mem(RegistroCliente **ptr_clientes, RegistroProduto **ptr_produtos) {
-    RegistroCliente *atual = *ptr_clientes;
-    while (atual != NULL) {
-        RegistroCliente *aux = atual;
-        Carrinho *itemAtual = atual->item;
+    RegistroCliente *atualCliente = *ptr_clientes;
+    while (atualCliente != NULL) {
+        RegistroCliente *auxCliente = atualCliente;
+        Carrinho *itemAtual = atualCliente->Item;
         while (itemAtual != NULL) {
             Carrinho *itemAux = itemAtual;
             itemAtual = itemAtual->proximo;
             free(itemAux);
         }
-        atual = atual->proximo;
+        atualCliente = atualCliente->proximo;
 
-        if (aux->nome != NULL) free(aux->nome);
-        if (aux->email != NULL) free(aux->email);
-        free(aux);
+        if (auxCliente->nome != NULL) free(auxCliente->nome);
+        if (auxCliente->email != NULL) free(auxCliente->email);
+        free(auxCliente);
+    }
+
+    RegistroProduto *atualProduto = *ptr_produtos;
+    while (atualProduto != NULL) {
+        RegistroProduto *auxProduto = atualProduto;
+        atualProduto = atualProduto->proximo;
+        if (auxProduto->nome !=NULL) free(auxProduto->nome);
+        free(auxProduto);
     }
     
+    *ptr_clientes = NULL;
     *ptr_produtos = NULL;
 
     printf("\n>> Memoria liberada. Encerrando programa. \n");
