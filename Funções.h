@@ -7,24 +7,15 @@
 #include <string.h>
 
 void Menu_inicial();
+void Menu_clientes(RegistroCliente **ptr_lista_clientes);
+void Menu_produtos(RegistroProduto **ptr_lista_produtos);
+void Menu_compras(RegistroCliente **ptr_lista_clientes, RegistroProduto *lista_produtos);
 
-void Menu_clientes();
-void Cadastro_cliente();
-void Lista_clientes();
-void Edita_cliente();
-void Remove_cliente();
+void Cadastro_cliente(RegistroCliente **ptr_lista_clientes);
+void Imprime_clientes(RegistroCliente *lista);
+RegistroCliente* Busca_cliente_cpf(RegistroCliente *lista, long long int cpf);
 
-void Menu_produtos();
-void Cadastro_produto();
-void Lista_produtos();
-void Edita_produto();
-void Remove_produto();
-
-void Menu_compras();
-void Realiza_compra();
-void Lista_compras();
-
-void Salva_dados();
-void Carrega_dados();
+void Cadastro_produto(RegistroProduto **ptr_lista_produtos);
+void Imprime_produtos(RegistroProduto *lista);
 
 #endif
