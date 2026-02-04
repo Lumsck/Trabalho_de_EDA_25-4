@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "Structs.h"
-#include "Funções.h"
+#include "loja.h"
 
 //MENU PRINCIPAL.
 void Menu_inicial() {
@@ -109,6 +105,7 @@ void Imprimir_clientes(RegistroCliente *ponteiro) {
         printf("Email: %s\n", atual->email);
         printf("Telefone: %lld\n", atual->telefone);
         printf("Data de nascimento: %d\n", atual->data_de_nascimento);
+        Formatar_data_nascimento(atual->data_de_nascimento);
         printf("-----------------------\n");
         atual = atual->proximo;
     }
@@ -552,4 +549,12 @@ void Limpar_memoria(RegistroCliente **ptr_clientes, RegistroProduto **ptr_produt
     *ptr_produtos = NULL;
 
     printf("\n>> Memoria liberada. Encerrando programa. \n");
+}
+
+//FUNCOES ADICIONAIS
+void printDataFormatada(int dataInteira) {
+    int dia = dataInteira / 1000000;
+    int mes = (dataInteira % 1000000) / 10000;
+    int ano = dataInteira % 10000;
+    printf("%02d/%02d/%04d", dia, mes, ano);
 }

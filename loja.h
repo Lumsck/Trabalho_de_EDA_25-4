@@ -1,10 +1,33 @@
-#ifndef FUNCOES_H
-#define FUNCOES_H
+#ifndef LOJA_H
+#define LOJA_H
 
-#include "Structs.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+typedef struct Carrinho {
+    long long int codigo_produto; 
+    long long int quantidade;
+    struct Carrinho * proximo;
+} Carrinho;
+
+typedef struct Cadastro {
+    long long int CPF;
+    char *nome;
+    char *email;
+    long long int telefone;
+    int data_de_nascimento;
+    Carrinho * Item;
+    struct Cadastro * proximo;
+} RegistroCliente;
+
+typedef struct Produto {
+    long long int codigo_unico; 
+    char *nome;
+    float preco;
+    long long int quantidade_estoque;
+    struct Produto * proximo;
+} RegistroProduto;
 
 //MENU INICIAL.
 void Menu_inicial();
@@ -33,5 +56,8 @@ void Remover_carrinho(RegistroCliente *listaClientes);
 
 //ALOCACAO DINAMICA DE MEMORIA.
 void Limpar_memoria(RegistroCliente **ptr_clientes, RegistroProduto **ptr_produtos);
+
+//FUNCOES ADICIONAIS
+void Formatar_data_nascimento(int dataInteira);
 
 #endif
