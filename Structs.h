@@ -6,7 +6,7 @@
 
 typedef struct Carrinho {
     long long int codigo_produto; 
-    int quantidade;
+    long long int quantidade;
     struct Carrinho * proximo;
 } Carrinho;
 

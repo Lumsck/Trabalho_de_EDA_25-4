@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Structs.h"
+#include "Funções.h"
 
 //MENU PRINCIPAL.
 void Menu_inicial() {
