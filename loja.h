@@ -58,6 +58,6 @@ void Remover_carrinho(RegistroCliente *listaClientes);
 void Limpar_memoria(RegistroCliente **ptr_clientes, RegistroProduto **ptr_produtos);
 
 //FUNCOES ADICIONAIS
-void Formatar_data_nascimento(int dataInteira);
+void Formatar_data_nascimento(int data_de_nascimento);
 
 #endif

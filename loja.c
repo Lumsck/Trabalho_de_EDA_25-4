@@ -472,7 +472,7 @@ void Listar_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProdu
         RegistroProduto *Produto = buscaCodigoUnico(listaProdutos, itemAtual->codigo_produto);
         if (Produto != NULL) {
             float subtotal = Produto->preco * itemAtual->quantidade;
-            printf("Produto: %s | Quantidade: %d | Unidade: R$%.2f | Subtotal: R$%.2f\n", Produto->nome, itemAtual->quantidade, Produto->preco, subtotal);
+            printf("Produto: %s | Quantidade: %lld | Unidade: R$%.2f | Subtotal: R$%.2f\n", Produto->nome, itemAtual->quantidade, Produto->preco, subtotal);
             totalCompra += subtotal;
         } else {
             printf("Produto de codigo: %lld (item excluido do sistema)\n", itemAtual->codigo_produto);
@@ -552,7 +552,7 @@ void Limpar_memoria(RegistroCliente **ptr_clientes, RegistroProduto **ptr_produt
 }
 
 //FUNCOES ADICIONAIS
-void printDataFormatada(int dataInteira) {
+void Formatar_data_nascimento(int dataInteira) {
     int dia = dataInteira / 1000000;
     int mes = (dataInteira % 1000000) / 10000;
     int ano = dataInteira % 10000;
