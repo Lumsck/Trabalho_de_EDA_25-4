@@ -409,7 +409,44 @@ void Menu_compras(RegistroCliente **ptr_lista_clientes, RegistroProduto **ptr_li
 }
 
 void Inserir_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProdutos) {
-    printf("Funcao em desenvolvimento.");
+    long long cpf;
+    long long codigoProduto;
+    long long _quantidade;
+
+    printf("Digite o CPF do cliente: ");
+    scanf("%lld", &cpf);
+    RegistroCliente *cliente = buscaCPF(listaClientes, cpf);
+    if (cliente == NULL) {
+        printf("Cliente nao cadastrado.\n");
+        return;
+    }
+
+    printf("Digite o codigo do produto: ");
+    scanf("%lld", &codigoProduto);
+    RegistroProduto *produto = buscaCodigoUnico(listaProdutos, codigoProduto);
+    if (produto == NULL) {
+        printf("Produto nao cadastrado.\n");
+        return;
+    }
+
+    printf("Quantidade desejada: ");
+    scanf("%lld", &_quantidade);
+    if (_quantidade > produto->quantidade_estoque) {
+        printf("Erro: estoque insuficiente (disponivel: %lld)\n", produto->quantidade_estoque);
+        return;
+    }
+
+    Carrinho *novoItem = malloc(sizeof(Carrinho));
+    if (novoItem == NULL) return;
+
+    novoItem->codigo_produto = codigoProduto;
+    novoItem->quantidade = _quantidade;
+    novoItem->proximo = cliente->Item;
+    cliente->Item = novoItem;
+
+    produto->quantidade_estoque -= _quantidade;
+
+    printf(">> Item adicionado ao carrinho de %s!\n", cliente->nome);
 }
 
 void Listar_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProdutos) {
