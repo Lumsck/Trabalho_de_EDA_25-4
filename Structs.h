@@ -24,7 +24,7 @@ typedef struct Produto {
     long long int codigo_unico; 
     char *nome;
     float preco;
-    int quantidade_estoque;
+    long long int quantidade_estoque;
     struct Produto * proximo;
 } RegistroProduto;
 
