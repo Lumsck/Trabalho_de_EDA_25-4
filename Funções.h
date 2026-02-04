@@ -11,24 +11,27 @@ void Menu_inicial();
 
 //CRUD CLIENTES.
 void Menu_clientes(RegistroCliente **ptr_lista_clientes);
-void Cadastro_cliente(RegistroCliente **ptr_lista_clientes);
-void Imprime_clientes(RegistroCliente *ponteiro);
-void Editar_cliente(RegistroCliente *lista);
-void Remover_cliente(RegistroCliente **ptr_lista_clientes);
+void Cadastrar_clientes(RegistroCliente **ptr_lista_clientes);
+void Imprimir_clientes(RegistroCliente *ponteiro);
+void Editar_clientes(RegistroCliente *lista);
+void Remover_clientes(RegistroCliente **ptr_lista_clientes);
 RegistroCliente* buscaCPF(RegistroCliente *lista, long long int cpf);
 
 //CRUD PRODUTO.
 void Menu_produtos(RegistroProduto **ptr_lista_produtos);
-void Cadastro_produto(RegistroProduto **ptr_lista_produtos);
-void Imprime_produtos(RegistroProduto *lista);
-void Editar_produto(RegistroProduto *lista);
-void Remover_produto(RegistroProduto **ptr_lista_produtos);
+void Cadastrar_produtos(RegistroProduto **ptr_lista_produtos);
+void Imprimir_produtos(RegistroProduto *lista);
+void Editar_produtos(RegistroProduto *lista);
+void Remover_produtos(RegistroProduto **ptr_lista_produtos);
 RegistroProduto *buscaCodigoUnico(RegistroProduto *ponteiro, long long int codigo_unico);
 
 //MENU DE COMPRAS.
 void Menu_compras(RegistroCliente **ptr_lista_clientes, RegistroProduto **ptr_lista_produtos);
+void Inserir_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProdutos);
+void Listar_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProdutos);
+void Remover_carrinho(RegistroCliente *listaClientes);
 
 //ALOCACAO DINAMICA DE MEMORIA.
-void Limpeza_mem(RegistroCliente **ptr_clientes, RegistroProduto **ptr_produtos);
+void Limpar_memoria(RegistroCliente **ptr_clientes, RegistroProduto **ptr_produtos);
 
 #endif
