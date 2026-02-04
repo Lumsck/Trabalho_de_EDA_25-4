@@ -67,7 +67,7 @@ void Cadastrar_clientes(RegistroCliente **ptr_lista_clientes) {
         return;
     }
 
-    printf("Digite o CPF: ");
+    printf("Digite o CPF (somente numeros): ");
     scanf("%lld", &novo->CPF);
     
     printf("Digite o nome: ");
@@ -78,7 +78,7 @@ void Cadastrar_clientes(RegistroCliente **ptr_lista_clientes) {
     novo->email = malloc(100 * sizeof(char));
     scanf(" %s", novo->email);
     
-    printf("Digite o telefone: ");
+    printf("Digite o telefone (somente numeros, com DDD): ");
     scanf("%lld", &novo->telefone);
     
     printf("Digite a data de nascimento (DDMMAAAA): ");
@@ -100,13 +100,20 @@ void Imprimir_clientes(RegistroCliente *ponteiro) {
     RegistroCliente *atual = ponteiro;
     while (atual != NULL) {
         printf("----- Registro de clientes -----\n");
-        printf("CPF: %lld\n", atual->CPF);
-        printf("Nome: %s\n", atual->nome);
+        printf("CPF: ");
+        Formatar_CPF(atual->CPF);
+
+        printf("\nNome: %s\n", atual->nome);
+
         printf("Email: %s\n", atual->email);
-        printf("Telefone: %lld\n", atual->telefone);
-        printf("Data de nascimento: %d\n", atual->data_de_nascimento);
+        
+        printf("Telefone: ");
+        Formatar_Telefone(atual->telefone);
+        
+        printf("\nData de nascimento: ");
         Formatar_data_nascimento(atual->data_de_nascimento);
-        printf("-----------------------\n");
+
+        printf("\n---------------------------------\n");
         atual = atual->proximo;
     }
 }
@@ -114,13 +121,15 @@ void Imprimir_clientes(RegistroCliente *ponteiro) {
 void Editar_clientes(RegistroCliente *lista) {
     long long int cpf_busca;
     printf("\n--- EDITAR CLIENTE ---\n");
-    printf("Digite o CPF do cliente que deseja editar: ");
+    printf("Digite o CPF do cliente que deseja editar (somente numeros): ");
     scanf("%lld", &cpf_busca);
 
     RegistroCliente *alvo = buscaCPF(lista, cpf_busca);
 
     if (alvo == NULL) {
-        printf("Erro: cliente com CPF %lld nao encontrado.\n", cpf_busca);
+        printf("Erro: cliente com CPF ");
+        Formatar_CPF(cpf_busca);
+        printf(" nao esta cadastrado.");
         return;
     }
 
@@ -139,7 +148,6 @@ void Editar_clientes(RegistroCliente *lista) {
             case 1: {
                 printf("Nome atual: %s\n", alvo->nome);
                 printf("Novo nome: ");
-
                 free(alvo->nome); 
                 alvo->nome = (char*) malloc(100 * sizeof(char));
                 scanf(" %[^\n]", alvo->nome);
@@ -156,15 +164,17 @@ void Editar_clientes(RegistroCliente *lista) {
                 break;
             }
             case 3: {
-                printf("Telefone atual: %lld\n", alvo->telefone);
-                printf("Novo telefone: ");
+                printf("Telefone atual: ");
+                Formatar_Telefone(alvo->telefone);
+                printf("\nNovo telefone (apenas numeros, com DDD): ");
                 scanf("%lld", &alvo->telefone);
                 printf(">> Telefone atualizado!\n");
                 break;
             }
             case 4: {
-                printf("Data de nascimento atual: %d\n", alvo->data_de_nascimento);
-                printf("Nova data (DDMMAAAA): ");
+                printf("Data de nascimento atual: ");
+                Formatar_data_nascimento(alvo->data_de_nascimento);
+                printf("\nNova data (DDMMAAAA): ");
                 scanf("%d", &alvo->data_de_nascimento);
                 printf(">> Data atualizada!\n");
                 break;
@@ -557,4 +567,21 @@ void Formatar_data_nascimento(int dataInteira) {
     int mes = (dataInteira % 1000000) / 10000;
     int ano = dataInteira % 10000;
     printf("%02d/%02d/%04d", dia, mes, ano);
+}
+
+void Formatar_CPF(long long int cpf) {
+    int parte1 = cpf / 100000000;
+    int parte2 = (cpf / 100000) % 1000;
+    int parte3 = (cpf / 100) % 1000;
+    int digito = cpf % 100;
+    
+    printf("%03d.%03d.%03d-%02d", parte1, parte2, parte3, digito);
+}
+
+void Formatar_Telefone(long long int telefone) {
+    int ddd = telefone / 1000000000;
+    int parte1 = (telefone / 10000) % 100000;
+    int parte2 = telefone % 10000;                 
+
+    printf("(%02d) %05d-%04d", ddd, parte1, parte2);
 }

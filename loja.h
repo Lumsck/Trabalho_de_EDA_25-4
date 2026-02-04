@@ -59,5 +59,7 @@ void Limpar_memoria(RegistroCliente **ptr_clientes, RegistroProduto **ptr_produt
 
 //FUNCOES ADICIONAIS
 void Formatar_data_nascimento(int data_de_nascimento);
+void Formatar_CPF(long long int cpf);
+void Formatar_Telefone(long long int telefone);
 
 #endif
