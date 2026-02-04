@@ -450,11 +450,75 @@ void Inserir_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProd
 }
 
 void Listar_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProdutos) {
-    printf("Funcao em desenvolvimento.");
+    long long cpf;
+    printf("Digite o CPF para ver o carrinho: ");
+    scanf("%lld", cpf);
+    RegistroCliente *cliente = buscaCPF(listaClientes, cpf);
+
+    if (cliente == NULL) {
+        printf("Cliente nao encontrado.\n");
+        return;
+    }
+    
+    if (cliente->Item == NULL) {
+        printf("O carrinho está vazio.\n");
+        return;
+    }
+
+    printf("\n--- Carrinho de %s ---\n", cliente->nome);
+
+    Carrinho *itemAtual = cliente->Item;
+    float totalCompra = 0.00;
+
+    while (itemAtual != NULL) {
+        RegistroProduto *Produto = buscaCodigoUnico(listaProdutos, itemAtual->codigo_produto);
+        if (Produto != NULL) {
+            float subtotal = Produto->preco * itemAtual->quantidade;
+            printf("Produto: %s | Quantidade: %d | Unidade: R$%.2f | Subtotal: R$%.2f\n", Produto->nome, itemAtual->quantidade, Produto->preco, subtotal);
+            totalCompra += subtotal;
+        } else {
+            printf("Produto de codigo: %lld (item excluido do sistema)\n", itemAtual->codigo_produto);
+        }
+        itemAtual = itemAtual->proximo;
+    }
+    printf("-----------------------------\n");
+    printf("Valor total da compra: R$ %.2f\n", totalCompra);
 }
 
 void Remover_carrinho(RegistroCliente *listaClientes) {
-    printf("Funcao em desenvolvimento.");
+    long long cpf, codigo;
+    printf("CPF do cliente: ");
+    scanf("%lld", &cpf);
+    RegistroCliente *cliente = buscaCPF(listaClientes, cpf);
+    if (cliente == NULL) {
+        printf("Cliente nao encontrado.\n");
+        return;
+    }
+    if (cliente->Item == NULL) {
+        printf("Carrinho vazio.\n");
+        return;
+    }
+    printf("Codigo do produto para remover: ");
+    scanf("%lld", &codigo);
+
+    Carrinho *atual = cliente->Item;
+    Carrinho *anterior = NULL;
+
+    while (atual != NULL && atual->codigo_produto != codigo) {
+        anterior = atual;
+        atual = atual->proximo;
+    }
+
+    if (atual == NULL) {
+        printf("Item nao esta no carrinho.\n");
+        return;
+    }
+
+    if (anterior == NULL) cliente->Item = atual->proximo;
+    else anterior->proximo = atual->proximo;
+
+    free(atual);
+    printf("Item removido do carrinho!\n");
 }
 
 //ALOCACAO DE MEMORIA (LIMPEZA)
