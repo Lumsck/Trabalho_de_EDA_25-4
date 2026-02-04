@@ -452,7 +452,7 @@ void Inserir_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProd
 void Listar_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProdutos) {
     long long cpf;
     printf("Digite o CPF para ver o carrinho: ");
-    scanf("%lld", cpf);
+    scanf("%lld", &cpf);
     RegistroCliente *cliente = buscaCPF(listaClientes, cpf);
 
     if (cliente == NULL) {
