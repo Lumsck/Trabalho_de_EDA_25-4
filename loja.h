@@ -52,7 +52,7 @@ RegistroProduto *buscaCodigoUnico(RegistroProduto *ponteiro, long long int codig
 void Menu_compras(RegistroCliente **ptr_lista_clientes, RegistroProduto **ptr_lista_produtos);
 void Inserir_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProdutos);
 void Listar_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProdutos);
-void Remover_carrinho(RegistroCliente *listaClientes);
+void Remover_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProdutos);
 
 //ALOCACAO DINAMICA DE MEMORIA.
 void Limpar_memoria(RegistroCliente **ptr_clientes, RegistroProduto **ptr_produtos);

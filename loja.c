@@ -47,7 +47,7 @@ void Menu_clientes(RegistroCliente **ptr_lista_clientes) {
             case 5: {
                 long long cpf_busca;
                 printf("Digite o CPF: ");
-                scanf("%lld", &cpf_busca);
+                scanf("%11lld", &cpf_busca);
                 RegistroCliente *res = buscaCPF(*ptr_lista_clientes, cpf_busca);
                 if(res) printf("Encontrado: %s\n", res->nome);
                 else printf("Nao encontrado.\n");
@@ -68,21 +68,21 @@ void Cadastrar_clientes(RegistroCliente **ptr_lista_clientes) {
     }
 
     printf("Digite o CPF (somente numeros): ");
-    scanf("%lld", &novo->CPF);
+    scanf("%11lld", &novo->CPF);
     
     printf("Digite o nome: ");
     novo->nome = malloc(100 * sizeof(char));
-    scanf(" %[^\n]", novo->nome); 
+    scanf(" %99[^\n]", novo->nome); 
     
     printf("Digite o email: ");
     novo->email = malloc(100 * sizeof(char));
-    scanf(" %s", novo->email);
+    scanf(" %99s", novo->email);
     
     printf("Digite o telefone (somente numeros, com DDD): ");
-    scanf("%lld", &novo->telefone);
+    scanf("%11lld", &novo->telefone);
     
     printf("Digite a data de nascimento (DDMMAAAA): ");
-    scanf("%d", &novo->data_de_nascimento);
+    scanf("%8d", &novo->data_de_nascimento);
 
     novo->Item=NULL;
 
@@ -122,7 +122,7 @@ void Editar_clientes(RegistroCliente *lista) {
     long long int cpf_busca;
     printf("\n--- EDITAR CLIENTE ---\n");
     printf("Digite o CPF do cliente que deseja editar (somente numeros): ");
-    scanf("%lld", &cpf_busca);
+    scanf("%11lld", &cpf_busca);
 
     RegistroCliente *alvo = buscaCPF(lista, cpf_busca);
 
@@ -150,7 +150,7 @@ void Editar_clientes(RegistroCliente *lista) {
                 printf("Novo nome: ");
                 free(alvo->nome); 
                 alvo->nome = (char*) malloc(100 * sizeof(char));
-                scanf(" %[^\n]", alvo->nome);
+                scanf(" %99[^\n]", alvo->nome);
                 printf(">> Nome atualizado!\n");
                 break;
             }
@@ -159,7 +159,7 @@ void Editar_clientes(RegistroCliente *lista) {
                 printf("Novo email: ");
                 free(alvo->email);
                 alvo->email = (char*) malloc(100 * sizeof(char));
-                scanf(" %s", alvo->email);
+                scanf(" %99s", alvo->email);
                 printf(">> Email atualizado!\n");
                 break;
             }
@@ -167,7 +167,7 @@ void Editar_clientes(RegistroCliente *lista) {
                 printf("Telefone atual: ");
                 Formatar_Telefone(alvo->telefone);
                 printf("\nNovo telefone (apenas numeros, com DDD): ");
-                scanf("%lld", &alvo->telefone);
+                scanf("%11lld", &alvo->telefone);
                 printf(">> Telefone atualizado!\n");
                 break;
             }
@@ -175,7 +175,7 @@ void Editar_clientes(RegistroCliente *lista) {
                 printf("Data de nascimento atual: ");
                 Formatar_data_nascimento(alvo->data_de_nascimento);
                 printf("\nNova data (DDMMAAAA): ");
-                scanf("%d", &alvo->data_de_nascimento);
+                scanf("%8d", &alvo->data_de_nascimento);
                 printf(">> Data atualizada!\n");
                 break;
             }
@@ -188,7 +188,7 @@ void Editar_clientes(RegistroCliente *lista) {
 void Remover_clientes(RegistroCliente **ptr_lista_clientes) {
     long long cpf_rem;
     printf("Digite o CPF do cliente para remover: ");
-    scanf("%lld", &cpf_rem);
+    scanf("%11lld", &cpf_rem);
 
     RegistroCliente *atual = *ptr_lista_clientes;
     RegistroCliente *anterior = NULL;
@@ -252,7 +252,7 @@ void Menu_produtos(RegistroProduto **ptr_lista_produtos) {
             case 5: {
                 long long codigo_busca;
                 printf("Digite o codigo do produto: ");
-                scanf("%lld", &codigo_busca);
+                scanf("%20lld", &codigo_busca);
                 RegistroProduto *res = buscaCodigoUnico(*ptr_lista_produtos, codigo_busca);
                 if(res) printf("Encontrado: %s\n", res->nome);
                 else printf("Nao encontrado.\n");
@@ -273,17 +273,17 @@ void Cadastrar_produtos(RegistroProduto **ptr_lista_produtos) {
     }
 
     printf("Digite o codigo do produto: ");
-    scanf("%lld", &novo->codigo_unico);
+    scanf("%20lld", &novo->codigo_unico);
     
     printf("Digite o nome: ");
     novo->nome = malloc(100 * sizeof(char));
-    scanf(" %[^\n]", novo->nome); 
+    scanf(" %99[^\n]", novo->nome); 
     
     printf("Digite o preco: ");
-    scanf(" %f", &novo->preco);
+    scanf(" %20f", &novo->preco);
     
     printf("Digite a quantidade em estoque: ");
-    scanf("%lld", &novo->quantidade_estoque);
+    scanf("%20lld", &novo->quantidade_estoque);
 
     novo->proximo = *ptr_lista_produtos;
     *ptr_lista_produtos = novo;
@@ -312,7 +312,7 @@ void Editar_produtos(RegistroProduto *lista) {
     long long int codigo_busca;
     printf("\n--- EDITAR PRODUTO ---\n");
     printf("Digite o codigo do produto: ");
-    scanf("%lld", &codigo_busca);
+    scanf("%20lld", &codigo_busca);
 
     RegistroProduto *alvo = buscaCodigoUnico(lista, codigo_busca);
 
@@ -336,30 +336,31 @@ void Editar_produtos(RegistroProduto *lista) {
                 printf("Novo nome: ");
                 free(alvo->nome);
                 alvo->nome = (char*) malloc(50 * sizeof(char));
-                scanf(" %[^\n]", alvo->nome);
+                scanf(" %99[^\n]", alvo->nome);
                 break;
             }
             case 2: {
                 printf("Preco atual: %.2f\n", alvo->preco);
                 printf("Novo preco: ");
-                scanf("%f", &alvo->preco);
+                scanf("%20f", &alvo->preco);
                 break;
             }
             case 3: {
                 printf("Estoque atual: %lld\n", alvo->quantidade_estoque);
                 printf("Novo estoque: ");
-                scanf("%lld", &alvo->quantidade_estoque);
+                scanf("%20lld", &alvo->quantidade_estoque);
                 break;
             }
+            case 0: printf(">> Produto atualizado!\n"); break;
+            default: printf("Opcao invalida.\n");
         }
     } while (opcao_edicao != 0);
-    printf(">> Produto atualizado!\n");
 }
 
 void Remover_produtos(RegistroProduto **ptr_lista_produtos) {
     long long cod_rem;
     printf("Digite o codigo do produto para remover: ");
-    scanf("%lld", &cod_rem);
+    scanf("%20lld", &cod_rem);
 
     RegistroProduto *atual = *ptr_lista_produtos;
     RegistroProduto *anterior = NULL;
@@ -409,7 +410,7 @@ void Menu_compras(RegistroCliente **ptr_lista_clientes, RegistroProduto **ptr_li
         switch (opcao) {
             case 1: Inserir_carrinho(*ptr_lista_clientes, *ptr_lista_produtos); break;
             case 2: Listar_carrinho(*ptr_lista_clientes, *ptr_lista_produtos); break;
-            case 3: Remover_carrinho(*ptr_lista_clientes); break;
+            case 3: Remover_carrinho(*ptr_lista_clientes, *ptr_lista_produtos); break;
             case 0: break;
             default: printf("Opcao invalida.\n");
         }
@@ -422,7 +423,7 @@ void Inserir_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProd
     long long _quantidade;
 
     printf("Digite o CPF do cliente: ");
-    scanf("%lld", &cpf);
+    scanf("%11lld", &cpf);
     RegistroCliente *cliente = buscaCPF(listaClientes, cpf);
     if (cliente == NULL) {
         printf("Cliente nao cadastrado.\n");
@@ -430,7 +431,7 @@ void Inserir_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProd
     }
 
     printf("Digite o codigo do produto: ");
-    scanf("%lld", &codigoProduto);
+    scanf("%20lld", &codigoProduto);
     RegistroProduto *produto = buscaCodigoUnico(listaProdutos, codigoProduto);
     if (produto == NULL) {
         printf("Produto nao cadastrado.\n");
@@ -438,7 +439,7 @@ void Inserir_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProd
     }
 
     printf("Quantidade desejada: ");
-    scanf("%lld", &_quantidade);
+    scanf("%20lld", &_quantidade);
     if (_quantidade > produto->quantidade_estoque) {
         printf("Erro: estoque insuficiente (disponivel: %lld)\n", produto->quantidade_estoque);
         return;
@@ -460,7 +461,7 @@ void Inserir_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProd
 void Listar_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProdutos) {
     long long cpf;
     printf("Digite o CPF para ver o carrinho: ");
-    scanf("%lld", &cpf);
+    scanf("%11lld", &cpf);
     RegistroCliente *cliente = buscaCPF(listaClientes, cpf);
 
     if (cliente == NULL) {
@@ -493,10 +494,10 @@ void Listar_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProdu
     printf("Valor total da compra: R$ %.2f\n", totalCompra);
 }
 
-void Remover_carrinho(RegistroCliente *listaClientes) {
+void Remover_carrinho(RegistroCliente *listaClientes, RegistroProduto *listaProdutos) {
     long long cpf, codigo;
     printf("CPF do cliente: ");
-    scanf("%lld", &cpf);
+    scanf("%11lld", &cpf);
     RegistroCliente *cliente = buscaCPF(listaClientes, cpf);
     if (cliente == NULL) {
         printf("Cliente nao encontrado.\n");
@@ -507,7 +508,7 @@ void Remover_carrinho(RegistroCliente *listaClientes) {
         return;
     }
     printf("Codigo do produto para remover: ");
-    scanf("%lld", &codigo);
+    scanf("%20lld", &codigo);
 
     Carrinho *atual = cliente->Item;
     Carrinho *anterior = NULL;
@@ -521,6 +522,12 @@ void Remover_carrinho(RegistroCliente *listaClientes) {
         printf("Item nao esta no carrinho.\n");
         return;
     }
+
+    RegistroProduto *produtoEstoque = buscaCodigoUnico(listaProdutos, codigo);
+    if (produtoEstoque != NULL) {
+        produtoEstoque->quantidade_estoque += atual->quantidade;
+        printf(">> %lld unidade(s) devolvida(s) ao estoque!\n", atual->quantidade);
+    } else printf(">> Aviso: produto original nao existe mais, estoque nao reposto.\n");
 
     if (anterior == NULL) cliente->Item = atual->proximo;
     else anterior->proximo = atual->proximo;
