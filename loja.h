@@ -33,11 +33,11 @@ typedef struct Produto {
 void Menu_inicial();
 
 //CRUD CLIENTES.
-void Menu_clientes(RegistroCliente **ptr_lista_clientes);
+void Menu_clientes(RegistroCliente **ptr_lista_clientes, RegistroProduto *listaProdutos);
 void Cadastrar_clientes(RegistroCliente **ptr_lista_clientes);
 void Imprimir_clientes(RegistroCliente *ponteiro);
 void Editar_clientes(RegistroCliente *lista);
-void Remover_clientes(RegistroCliente **ptr_lista_clientes);
+void Remover_clientes(RegistroCliente **ptr_lista_clientes, RegistroProduto *listaProdutos);
 RegistroCliente* buscaCPF(RegistroCliente *lista, long long int cpf);
 
 //CRUD PRODUTO.
@@ -61,5 +61,6 @@ void Limpar_memoria(RegistroCliente **ptr_clientes, RegistroProduto **ptr_produt
 void Formatar_data_nascimento(int data_de_nascimento);
 void Formatar_CPF(long long int cpf);
 void Formatar_Telefone(long long int telefone);
+void Limpar_buffer();
 
 #endif
