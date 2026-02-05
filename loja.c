@@ -171,7 +171,7 @@ void Editar_clientes(RegistroCliente *lista) {
                 printf("Nome atual: %s\n", alvo->nome);
                 printf("Novo nome: ");
                 free(alvo->nome); 
-                alvo->nome = (char*) malloc(100 * sizeof(char));
+                alvo->nome = malloc(100 * sizeof(char));
                 scanf(" %99[^\n]", alvo->nome);
                 printf(">> Nome atualizado!\n");
                 break;
@@ -180,7 +180,7 @@ void Editar_clientes(RegistroCliente *lista) {
                 printf("Email atual: %s\n", alvo->email);
                 printf("Novo email: ");
                 free(alvo->email);
-                alvo->email = (char*) malloc(100 * sizeof(char));
+                alvo->email = malloc(100 * sizeof(char));
                 scanf(" %99s", alvo->email);
                 printf(">> Email atualizado!\n");
                 break;
@@ -308,7 +308,7 @@ void Cadastrar_produtos(RegistroProduto **ptr_lista_produtos) {
         return;
     }
 
-    RegistroProduto *novo = (RegistroProduto*) malloc(sizeof(RegistroProduto));
+    RegistroProduto *novo = malloc(sizeof(RegistroProduto));
     
     if (novo == NULL) {
         printf("Erro de memoria!\n");
@@ -381,7 +381,7 @@ void Editar_produtos(RegistroProduto *lista) {
                 printf("Nome atual: %s\n", alvo->nome);
                 printf("Novo nome: ");
                 free(alvo->nome);
-                alvo->nome = (char*) malloc(50 * sizeof(char));
+                alvo->nome = malloc(50 * sizeof(char));
                 scanf(" %99[^\n]", alvo->nome);
                 break;
             }
